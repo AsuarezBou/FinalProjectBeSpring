@@ -2,6 +2,7 @@ package pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.controller.maest
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +22,19 @@ public class ClienteController {
 	}
 
 	@GetMapping
-	public List<ClienteDTO> findAll() throws ServiceException {
-		return clienteService.findAll();
+	public ResponseEntity<?> findAll() throws ServiceException {
+		try {
+			List<ClienteDTO> clientes = clienteService.findAll();
+			if(clientes.isEmpty()) {
+				return ResponseEntity.noContent().build();
+			}
+			
+			return ResponseEntity.ok(clientes);
+			
+		}catch(Exception e) {
+			return ResponseEntity.internalServerError().body(null);
+
+		}
 	}
 
 	/*

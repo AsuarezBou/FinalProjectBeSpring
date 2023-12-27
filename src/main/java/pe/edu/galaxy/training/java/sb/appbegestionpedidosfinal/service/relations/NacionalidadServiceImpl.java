@@ -1,11 +1,13 @@
 package pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.relations;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.dto.relations.NacionalidadDTO;
+import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.entity.relations.NacionalidadEntity;
 import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.mappers.relations.NacionalidadMapper;
 import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.repository.relations.NacionalidadRepository;
 import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.exception.ServiceException;
@@ -28,8 +30,21 @@ public class NacionalidadServiceImpl implements NacionalidadService{
 
 	@Override
 	public List<NacionalidadDTO> findAll() throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+
+		try {
+			List<NacionalidadEntity> lstEntity = nacionalidadRepository.findAll();
+			
+			List<NacionalidadDTO> lstDTO = new ArrayList<>();
+			
+			for(NacionalidadEntity nacionalidadEntity : lstEntity){
+				lstDTO.add(nacionalidadMapper.toDto(nacionalidadEntity));
+			}
+			
+			return lstDTO;
+			
+		}catch(Exception e){
+			throw new ServiceException(e);
+		}
 	}
 
 	@Override

@@ -7,38 +7,38 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.dto.maestros.PaisDTO;
+import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.dto.maestros.GeneroDTO;
 import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.exception.ServiceException;
-import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.maestros.PaisService;
+import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.maestros.GeneroService;
 
 @RestController
-@RequestMapping("api/v1/paises")
-public class PaisController {
+@RequestMapping("api/v1/generos")
+public class GeneroController {
 	
-	private final PaisService paisService;
+	private final GeneroService generoService;
 
-	public PaisController(final PaisService paisService) {
+	public GeneroController(GeneroService generoService) {
 		super();
-		this.paisService = paisService;
+		this.generoService = generoService;
 	}
-
+	
 	@GetMapping
-	public ResponseEntity<?> findAll() throws ServiceException {
+	public ResponseEntity<?> findAll() throws ServiceException{
+		
 		try {
 			
-			List<PaisDTO> paises = paisService.findAll();
+			List<GeneroDTO> generos = generoService.findAll();
 			
-			if(paises.isEmpty()) {
-				
+			if(generos.isEmpty()) {
 				return ResponseEntity.noContent().build();
 			}
 			
-			return ResponseEntity.ok(paises);
+			return ResponseEntity.ok(generos);
 			
 		}catch(Exception e) {
-			
 			return ResponseEntity.internalServerError().body(null);
 		}
+		 
 	}
 
 }
