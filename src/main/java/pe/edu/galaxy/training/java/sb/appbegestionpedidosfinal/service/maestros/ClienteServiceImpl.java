@@ -1,6 +1,5 @@
 package pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.maestros;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,13 +29,9 @@ public class ClienteServiceImpl implements ClienteService  {
 	@Override
 	public List<ClienteDTO> findAll() throws ServiceException {
 		try {
-			List<ClienteEntity> lstEntity= clienteRepository.findAllCustom();
 			
-			List<ClienteDTO> lstDTO=new ArrayList<>();
-			for (ClienteEntity clienteEntity : lstEntity) {
-				lstDTO.add(clienteMapper.toDto(clienteEntity));
-			}
-			return lstDTO;
+			return clienteRepository.findAll().stream().map(p -> clienteMapper.toDto(p)).toList();
+			
 		} catch (Exception e) {
 			throw new ServiceException(e);
 		}
@@ -73,7 +68,7 @@ public class ClienteServiceImpl implements ClienteService  {
 	}
 
 	@Override
-	public Optional<ClienteEntity> findByRuc(String ruc) throws ServiceException {
+	public Optional<ClienteEntity> findByDocument(String document) throws ServiceException {
 		// TODO Auto-generated method stub
 		return Optional.empty();
 	}

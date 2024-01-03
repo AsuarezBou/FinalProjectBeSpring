@@ -10,6 +10,6 @@ import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.generic.G
 
 public interface ClienteService extends GenericService<ClienteDTO> {
 	
-	Optional<ClienteEntity> findByRuc(String ruc)  throws ServiceException;
+	Optional<ClienteEntity> findByDocument(String document)  throws ServiceException;
 
 }
