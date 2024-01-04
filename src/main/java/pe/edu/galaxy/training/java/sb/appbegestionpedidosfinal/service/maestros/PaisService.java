@@ -9,5 +9,5 @@ import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.generic.G
 
 public interface PaisService extends GenericService<PaisDTO> {
 
-	Page<PaisDTO> findByLikePage(Pageable page) throws ServiceException;
+	Page<PaisDTO> findByLikePage(Pageable page, String nombre) throws ServiceException;
 }

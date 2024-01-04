@@ -12,7 +12,7 @@ import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.entity.maestros.P
 @Transactional
 public interface PaisRepository extends JpaRepository<PaisEntity,Long> {
 	
-	@Query("Select p from Pais p")
-	Page<PaisEntity> findByLikePage(Pageable page);
+	@Query("Select p from Pais p where upper(p.descripcion) like :nombre")
+	Page<PaisEntity> findByLikePage(Pageable page, String nombre);
 
 }

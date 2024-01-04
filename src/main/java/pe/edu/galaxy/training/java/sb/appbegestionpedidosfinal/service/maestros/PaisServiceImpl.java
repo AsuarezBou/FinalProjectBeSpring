@@ -66,9 +66,9 @@ public class PaisServiceImpl implements PaisService{
 		return Optional.empty();
 	}
 	@Override
-	public Page<PaisDTO> findByLikePage(Pageable page) throws ServiceException {
+	public Page<PaisDTO> findByLikePage(Pageable page, String nombre) throws ServiceException {
 		
-		return paisMapper.toListDTO(paisRepository.findByLikePage(page));
+		return paisMapper.toListDTO(paisRepository.findByLikePage(page,nombre));
 	}
 
 }

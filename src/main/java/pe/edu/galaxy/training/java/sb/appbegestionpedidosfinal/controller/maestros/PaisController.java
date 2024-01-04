@@ -46,12 +46,13 @@ public class PaisController {
 	
 	@GetMapping("by-page")
 	public ResponseEntity<?> findByPage(
+			@RequestParam(name = "nombre" , defaultValue = "" ) String nombre,
 			@RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber,
 			@RequestParam(name = "pageSize" , defaultValue = "1") int pageSize) throws ServiceException {
 		try {
 			
 			PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
-			Page<PaisDTO> paises = paisService.findByLikePage(pageRequest);
+			Page<PaisDTO> paises = paisService.findByLikePage(pageRequest,"%"+ nombre + "%");
 			
 			if(paises.isEmpty()) {
 				
