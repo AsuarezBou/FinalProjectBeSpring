@@ -35,4 +35,11 @@ public class NacionalidadEntity implements Serializable{
 	
 	@Column(name = "descripcion")
 	private String descripcion;
+
+	public NacionalidadEntity(Long id) {
+		super();
+		this.id = id;
+	}
+	
+	
 }

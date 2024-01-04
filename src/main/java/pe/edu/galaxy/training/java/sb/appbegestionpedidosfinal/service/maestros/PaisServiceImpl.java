@@ -3,6 +3,8 @@ package pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.maestros
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.dto.maestros.PaisDTO;
@@ -27,7 +29,7 @@ public class PaisServiceImpl implements PaisService{
 	public List<PaisDTO> findAll() throws ServiceException {
 		try {
 			
-			return paisRepository.findAll().stream().map(p -> paisMapper.toDto(p)).toList();
+			return paisMapper.toListDTO(paisRepository.findAll());
 
 		} catch (Exception e) {
 			throw new ServiceException(e);
@@ -62,6 +64,11 @@ public class PaisServiceImpl implements PaisService{
 	public Optional<PaisDTO> findById(Long id) throws ServiceException {
 		// TODO Auto-generated method stub
 		return Optional.empty();
+	}
+	@Override
+	public Page<PaisDTO> findByLikePage(Pageable page) throws ServiceException {
+		
+		return paisMapper.toListDTO(paisRepository.findByLikePage(page));
 	}
 
 }

@@ -26,4 +26,11 @@ public class DocumentosEntity implements Serializable{
 	
 	@Column(name = "descripcion")
 	private String descripcion;
+
+	public DocumentosEntity(Long id) {
+		super();
+		this.id = id;
+	}
+	
+	
 }

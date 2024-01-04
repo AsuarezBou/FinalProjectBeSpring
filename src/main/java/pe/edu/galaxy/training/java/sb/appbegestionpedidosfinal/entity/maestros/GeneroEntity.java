@@ -27,5 +27,9 @@ public class GeneroEntity implements Serializable{
 	@Column(name = "descripcion")
 	private String descripcion;
 
+	public GeneroEntity(Long id) {
+		super();
+		this.id = id;
+	}
 
 }

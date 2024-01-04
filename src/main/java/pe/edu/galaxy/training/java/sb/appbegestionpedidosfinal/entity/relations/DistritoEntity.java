@@ -35,5 +35,10 @@ public class DistritoEntity implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "id_ciudad", nullable = false)
 	private CiudadEntity ciudad;
+	
+	public DistritoEntity(Long id) {
+		super();
+		this.id = id;
+	}
 
 }
