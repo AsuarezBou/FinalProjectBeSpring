@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.dto.commons.CustomPageResponse;
 import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.dto.maestros.PaisDTO;
 import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.exception.ServiceException;
 import pe.edu.galaxy.training.java.sb.appbegestionpedidosfinal.service.maestros.PaisService;
@@ -59,7 +60,9 @@ public class PaisController {
 				return ResponseEntity.noContent().build();
 			}
 			
-			return ResponseEntity.ok(paises);
+			CustomPageResponse<PaisDTO> custom = new CustomPageResponse<PaisDTO>(paises);
+			
+			return ResponseEntity.ok(custom);
 			
 		}catch(Exception e) {
 			
